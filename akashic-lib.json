@@ -1,0 +1,53 @@
+{
+  "gameCofigurationData": {
+    "environment": {
+      "external": {
+        "contentStorage": "1"
+      }
+    }
+  },
+  "assetList": [
+    {
+      "type": "image",
+      "path": "assets/stick_base.png",
+      "width": 300,
+      "height": 300
+    },
+    {
+      "type": "image",
+      "path": "assets/stick_shaft.png",
+      "width": 80,
+      "height": 80
+    },
+    {
+      "type": "image",
+      "path": "assets/button0_hint.png",
+      "width": 200,
+      "height": 90
+    },
+    {
+      "type": "image",
+      "path": "assets/button0_up.png",
+      "width": 300,
+      "height": 150
+    },
+    {
+      "type": "image",
+      "path": "assets/button1_hint.png",
+      "width": 200,
+      "height": 90
+    },
+    {
+      "type": "image",
+      "path": "assets/button1_up.png",
+      "width": 300,
+      "height": 150
+    },
+    {
+      "type": "image",
+      "path": "assets/stick_hint.png",
+      "width": 300,
+      "height": 300
+    }
+  ]
+}

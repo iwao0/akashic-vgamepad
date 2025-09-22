@@ -1,0 +1,35 @@
+{
+  "name": "@iwao0/akashic-vgamepad",
+  "version": "0.1.1",
+  "description": "",
+  "homepage": "https://github.com/iwao0/akashic-vgamepad#readme",
+  "bugs": {
+    "url": "https://github.com/iwao0/akashic-vgamepad/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iwao0/akashic-vgamepad.git"
+  },
+  "license": "MIT",
+  "author": "iwao0",
+  "type": "commonjs",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "prepare": "rimraf lib && npm run build",
+    "build": "tsc",
+    "test": "npm run lint",
+    "lint": "eslint \"src/**/*.ts\" --fix"
+  },
+  "files": [
+    "lib",
+    "assets",
+    "akashic-lib.json"
+  ],
+  "devDependencies": {
+    "@akashic/akashic-engine": "^3.21.0",
+    "@akashic/eslint-config": "^3.0.2",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.9.2"
+  }
+}

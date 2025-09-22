@@ -1,0 +1,72 @@
+{
+	"width": 800,
+	"height": 450,
+	"fps": 30,
+	"main": "./script/main.js",
+	"assets": {
+		"main": {
+			"type": "script",
+			"path": "script/main.js",
+			"global": true
+		},
+		"stick_base2": {
+			"type": "image",
+			"path": "image/stick_base2.png",
+			"width": 300,
+			"height": 300
+		},
+		"node_modules/@iwao0/akashic-vgamepad/assets/stick_base.png": {
+			"type": "image",
+			"path": "node_modules/@iwao0/akashic-vgamepad/assets/stick_base.png",
+			"width": 300,
+			"height": 300
+		},
+		"node_modules/@iwao0/akashic-vgamepad/assets/stick_shaft.png": {
+			"type": "image",
+			"path": "node_modules/@iwao0/akashic-vgamepad/assets/stick_shaft.png",
+			"width": 80,
+			"height": 80
+		},
+		"node_modules/@iwao0/akashic-vgamepad/assets/button0_hint.png": {
+			"type": "image",
+			"path": "node_modules/@iwao0/akashic-vgamepad/assets/button0_hint.png",
+			"width": 200,
+			"height": 90
+		},
+		"node_modules/@iwao0/akashic-vgamepad/assets/button0_up.png": {
+			"type": "image",
+			"path": "node_modules/@iwao0/akashic-vgamepad/assets/button0_up.png",
+			"width": 300,
+			"height": 150
+		},
+		"node_modules/@iwao0/akashic-vgamepad/assets/button1_hint.png": {
+			"type": "image",
+			"path": "node_modules/@iwao0/akashic-vgamepad/assets/button1_hint.png",
+			"width": 200,
+			"height": 90
+		},
+		"node_modules/@iwao0/akashic-vgamepad/assets/button1_up.png": {
+			"type": "image",
+			"path": "node_modules/@iwao0/akashic-vgamepad/assets/button1_up.png",
+			"width": 300,
+			"height": 150
+		},
+		"node_modules/@iwao0/akashic-vgamepad/assets/stick_hint.png": {
+			"type": "image",
+			"path": "node_modules/@iwao0/akashic-vgamepad/assets/stick_hint.png",
+			"width": 300,
+			"height": 300
+		}
+	},
+	"environment": {
+		"sandbox-runtime": "3"
+	},
+	"moduleMainScripts": {
+		"@iwao0/akashic-vgamepad": "node_modules/@iwao0/akashic-vgamepad/lib/index.js"
+	},
+	"globalScripts": [
+		"node_modules/@iwao0/akashic-vgamepad/lib/KeyboardOperationPlugin.js",
+		"node_modules/@iwao0/akashic-vgamepad/lib/VirtualGamepad.js",
+		"node_modules/@iwao0/akashic-vgamepad/lib/index.js"
+	]
+}
