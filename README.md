@@ -36,13 +36,21 @@ akashic install @iwao0/akashic-vgamepad
 ```javascript
 const { VirtualGamepad } = require("@iwao0/akashic-vgamepad");
 
+const scene = new g.Scene({
+	game: g.game,
+	// VirtualGamepadに含まれている画像素材を追加する
+	assetPaths: [
+		...VirtualGamepad.getAssetPaths()
+	]
+});
+
 const gamepad = new VirtualGamepad({
 	scene: scene,
 });
 scene.append(gamepad);
 
 scene.onUpdate.add(() => {
-	// フレームごとにリフレッシュする必要があります
+	// フレームごとにリフレッシュする
 	gamepad.refresh();
 })
 ```
@@ -164,6 +172,18 @@ const gamepad = new VirtualGamepad({
 
 戻り値:
 - スマートフォンの場合true、それ以外の場合false
+
+### TypeScriptで使用する時の注意点
+
+tsconfig.jsonのcompilerOptions.libに項目を追加する必要があります。
+
+```javascript
+// 変更前
+"lib": ["es5"],
+
+// 変更後
+"lib": ["es5", "dom"],
+```
 
 ## ビルド方法
 
