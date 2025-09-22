@@ -2,7 +2,6 @@
 *.afdesign~lock~
 todo.txt
 lib
-sample_ts
 
 # Logs
 logs

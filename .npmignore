@@ -1,4 +1,5 @@
 /node_modules
 /src
 /sample
+/sample_ts
 tsconfig.json
