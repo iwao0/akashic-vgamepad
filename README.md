@@ -61,8 +61,8 @@ scene.onUpdate.add(() => {
 
 ```javascript
 // スティックの座標
-let x = gamepad.stick.x; // 0〜1
-let y = gamepad.stick.y; // 0〜1
+let x = gamepad.stick.x; // -1〜1
+let y = gamepad.stick.y; // -1〜1
 // スティックの角度と大きさ
 let angle = gamepad.stick.angle; // -π〜π (右向きが0)
 let magnitude = gamepad.stick.magnitude; // 0〜1
