@@ -16,6 +16,9 @@ indent_style = tab
 indent_size = 4
 indent_style = tab
 
+[*.md]
+trim_trailing_whitespace = false
+
 [game.json]
 indent_size = 4
 indent_style = tab
