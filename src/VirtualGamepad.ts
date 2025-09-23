@@ -17,60 +17,215 @@ interface KeyboardState {
 	keys: { [key: string]: number };
 }
 
+/**
+ * VirtualGamepadのコンストラクタに渡すオプション
+ * @extends g.EParameterObject
+ */
 export interface VirtualGamepadParameterObject extends g.EParameterObject {
+	/**
+	 * 仮想スティックの左側の隙間
+	 * @default 40
+	 */
 	marginLeft?: number;
+	/**
+	 * 仮想ボタンの右側の隙間
+	 * @default 40
+	 */
 	marginRight?: number;
+	/**
+	 * 仮想スティック、仮想ボタンの下側の隙間
+	 * @default 40
+	 */
 	marginBottom?: number;
+	/**
+	 * 仮想スティックの軸の可動域 (値が大きいほど狭くなる)
+	 * @default 8
+	 */
 	shaftMargin?: number;
+	/**
+	 * 仮想ボタンの数 (0〜2)
+	 * @default 2
+	 */
 	buttonCount?: number;
+	/**
+	 * 仮想ボタン間の隙間
+	 * @default 20
+	 */
 	buttonSpace?: number;
+	/**
+	 * 物理スティックの中心の遊びの領域 (0〜1)
+	 * @default 0.2
+	 */
 	stickNeutralRange?: number;
+	/**
+	 * キーボードの押し始めにヒントを表示するか
+	 * @default true
+	 */
 	useHint?: boolean;
+	/**
+	 * キーボード入力を使用するか
+	 * @default true
+	 */
 	useKeyboard?: boolean;
+	/**
+	 * マウス、タッチ入力を使用するか
+	 * @default true
+	 */
 	useMouseOrTouch?: boolean;
+	/**
+	 * 物理ゲームパッドを使用するか
+	 * @default true
+	 */
 	useGamepad?: boolean;
+	/**
+	 * キーボードプラグインのコード番号 (問題が起こった時は値を変更してください)
+	 * @default 139
+	 */
 	keyboardPluginCode?: number;
+	/**
+	 * キーボードのキー入力の再マップ (それぞれに複数キーの登録可能)
+	 */
 	keys?: {
+		/**
+		 * スティック入力の左
+		 * @default ["a", "A", "ArrowLeft"]
+		 */
 		left?: string[];
+		/**
+		 * スティック入力の右
+		 * @default ["d", "D", "ArrowRight"]
+		 */
 		right?: string[];
+		/**
+		 * スティック入力の上
+		 * @default ["w", "W", "ArrowUp"]
+		 */
 		up?: string[];
+		/**
+		 * スティック入力の下
+		 * @default ["s", "S", "ArrowDown"]
+		 */
 		down?: string[];
+		/**
+		 * ボタン0
+		 * @default [" ", "Space"]
+		 */
 		button0?: string[];
+		/**
+		 * ボタン1
+		 * @default ["Shift"]
+		 */
 		button1?: string[];
 	};
+	/**
+	 * 画像の置き換え
+	 * scene.asset.getImageById()等を使って入れ替えてください。
+	 */
 	images?: {
+		/**
+		 * スティックの土台
+		 */
 		stickBase?: g.ImageAsset | g.Surface;
+		/**
+		 * スティックのキーボードヒント
+		 */
 		stickHint?: g.ImageAsset | g.Surface;
+		/**
+		 * スティックの軸
+		 */
 		stickShaft?: g.ImageAsset | g.Surface;
+		/**
+		 * ボタン0
+		 */
 		button0Up?: g.ImageAsset | g.Surface;
+		/**
+		 * ボタン0のキーボードヒント
+		 */
 		button0Hint?: g.ImageAsset | g.Surface;
+		/**
+		 * ボタン1
+		 */
 		button1Up?: g.ImageAsset | g.Surface;
+		/**
+		 * ボタン1のキーボードヒント
+		 */
 		button1Hint?: g.ImageAsset | g.Surface;
 	};
 }
 
+/**
+ * 仮想スティックの状態
+ */
 export interface VirtualGamepadStick {
+	/**
+	 * X座標 (-1〜1)
+	 */
 	x: number;
+	/**
+	 * Y座標 (-1〜1)
+	 */
 	y: number;
+	/**
+	 * 角度 (-π〜π)
+	 */
 	angle: number;
+	/**
+	 * 傾きの大きさ (0〜1)
+	 */
 	magnitude: number;
+	/**
+	 * 画像
+	 */
 	sprites: {
+		/**
+		 * スティックの土台
+		 */
 		base: g.Sprite;
+		/**
+		 * スティックの軸
+		 */
 		shaft: g.Sprite;
+		/**
+		 * キーボードヒント
+		 */
 		hint: g.Sprite;
 	};
 }
 
+/**
+ * 仮想ボタンの状態
+ */
 export interface VirtualGamepadButton {
+	/**
+	 * 押された瞬間:true
+	 */
 	isPressed: boolean;
+	/**
+	 * 離された瞬間:true
+	 */
 	isReleased: boolean;
+	/**
+	 * 押されている間:true (isPressedがtrueになった次のフレームからtrueになる)
+	 */
 	isHeld: boolean;
+	/**
+	 * 画像
+	 */
 	sprites: {
+		/**
+		 * ボタン
+		 */
 		up: g.Sprite;
+		/**
+		 * キーボードヒント
+		 */
 		hint: g.Sprite;
 	};
 }
 
+/**
+ * VirtualGamepadのコンストラクタに渡されたオプションの一覧
+ */
 export class VirtualGamepadOptions {
 	readonly marginLeft: number;
 	readonly marginRight: number;
@@ -157,10 +312,46 @@ export class VirtualGamepadOptions {
 	}
 }
 
+/**
+ * 仮想ゲームパッド
+ * @description
+ * 使用例:
+ * ```js
+ * const scene = new g.Scene({
+ * 	game: g.game,
+ * 	// VirtualGamepadに含まれている画像素材を追加する
+ * 	assetPaths: [
+ * 		...VirtualGamepad.getAssetPaths()
+ * 	]
+ * });
+ *
+ * const gamepad = new VirtualGamepad({
+ * 	scene: scene,
+ * });
+ * scene.append(gamepad);
+ *
+ * scene.onUpdate.add(() => {
+ * 	// フレームごとにリフレッシュする
+ * 	gamepad.refresh();
+ * })
+ * ```
+ */
 export class VirtualGamepad extends g.E {
+	/**
+	 * 入力の有効・無効
+	 */
 	isEnabled: boolean;
+	/**
+	 * スティックの状態
+	 */
 	stick: VirtualGamepadStick;
+	/**
+	 * ボタンの状態
+	 */
 	buttons: VirtualGamepadButton[];
+	/**
+	 * コンストラクタで渡されたオプションの一覧
+	 */
 	options: VirtualGamepadOptions;
 
 	private isUsingVirtualStick: boolean;
@@ -168,6 +359,12 @@ export class VirtualGamepad extends g.E {
 	private isHintVisible: boolean;
 	private keyboard: KeyboardState;
 
+	/**
+	 * VirtualGamepadで使用されるアセットのパス一覧
+	 * @description
+	 * g.SceneのコンストラクタのassetPathsに渡してください。
+	 * @returns アセットのパス一覧
+	 */
 	static getAssetPaths(): string[] {
 		return [
 			resolveAssetPath("stick_base.png"),
@@ -180,6 +377,9 @@ export class VirtualGamepad extends g.E {
 		];
 	}
 
+	/**
+	 * @param param 仮想ゲームパッドの作成オプション
+	 */
 	constructor(param: VirtualGamepadParameterObject) {
 		super(param);
 
@@ -343,6 +543,9 @@ export class VirtualGamepad extends g.E {
 		this.makeButtons();
 	}
 
+	/**
+	 * 入力値をリセットし、軸を中心に戻す
+	 */
 	reset(): void {
 		for (const button of this.buttons) {
 			button.isPressed = false;
@@ -356,6 +559,10 @@ export class VirtualGamepad extends g.E {
 		this.setStickShaftPosition(0, 0);
 	}
 
+	/**
+	 * 仮想ゲームパッドの表示サイズを変更する
+	 * @param value 表示サイズ (0〜1)
+	 */
 	scale(value: number): void {
 		this.scaleX = value;
 		this.scaleY = value;
@@ -384,6 +591,9 @@ export class VirtualGamepad extends g.E {
 		this.modified();
 	}
 
+	/**
+	 * キーボードヒントを表示する
+	 */
 	showHint(): void {
 		this.stick.sprites.base.append(this.stick.sprites.hint);
 		if (this.options.buttonCount >= 1) {
@@ -394,6 +604,10 @@ export class VirtualGamepad extends g.E {
 		}
 	}
 
+	/**
+	 * 実行されている端末がスマートフォンか調べる
+	 * @returns スマートフォンの場合true、それ以外の場合false
+	 */
 	isSmartPhone(): boolean {
 		if (navigator == null || navigator.userAgent == null) {
 			return true;
@@ -404,6 +618,12 @@ export class VirtualGamepad extends g.E {
 		return false;
 	}
 
+	/**
+	 * 仮想ゲームパッドの状態を更新する
+	 * @description
+	 * フレームごとに一度だけ呼び出してください。
+	 * 動作に問題が出る場合は、onUpdate()の最後に呼び出してください。
+	 */
 	refresh(): void {
 		const gamepad = this.getGamepad();
 		if (!this.isUsingVirtualStick) {
