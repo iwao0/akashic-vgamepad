@@ -1,5 +1,7 @@
 # akashic-vgamepad
 
+[![NPM Package][npm]][npm-url]
+
 **akashic-vgamepad** は、仮想ゲームパッドの表示と入力用のakashicゲーム向け操作プラグインです。
 
 実装例は [sample](./sample) ディレクトリ以下にあるサンプルプロジェクトを参照してください。
@@ -248,3 +250,6 @@ npm test
 ## ライセンス
 本リポジトリは MIT License の元で公開されています。
 詳しくは [LICENSE](./LICENSE) をご覧ください。
+
+[npm]: https://img.shields.io/npm/v/@iwao0/akashic-vgamepad
+[npm-url]: https://www.npmjs.com/package/@iwao0/akashic-vgamepad
