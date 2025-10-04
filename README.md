@@ -49,7 +49,7 @@ const scene = new g.Scene({
 });
 
 const gamepad = new VirtualGamepad({
-	scene: scene,
+	scene: scene
 });
 scene.append(gamepad);
 
