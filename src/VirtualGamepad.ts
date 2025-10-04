@@ -1,7 +1,9 @@
 import { KeyboardOperationPlugin } from "./KeyboardOperationPlugin";
 
+let assetBasePath = "/node_modules/@iwao0/akashic-vgamepad/assets/";
+
 function resolveAssetPath(assetId: string): string {
-	return "/node_modules/@iwao0/akashic-vgamepad/assets/" + assetId;
+	return assetBasePath + assetId;
 }
 
 const GAMEPAD_BUTTON = {
@@ -363,9 +365,14 @@ export class VirtualGamepad extends g.E {
 	 * VirtualGamepadで使用されるアセットのパス一覧
 	 * @description
 	 * g.SceneのコンストラクタのassetPathsに渡してください。
+	 * @param basePath 子モジュールとしてakashic-vgamepadを使用する時に、
+	 * ベースパスを変更するために使用する
 	 * @returns アセットのパス一覧
 	 */
-	static getAssetPaths(): string[] {
+	static getAssetPaths(basePath?: string): string[] {
+		if (basePath != null) {
+			assetBasePath = basePath;
+		}
 		return [
 			resolveAssetPath("stick_base.png"),
 			resolveAssetPath("stick_hint.png"),

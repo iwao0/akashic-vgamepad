@@ -12,6 +12,6 @@
     "@akashic/akashic-sandbox": "^0.28.1"
   },
   "dependencies": {
-    "@iwao0/akashic-vgamepad": "^0.1.2"
+    "@iwao0/akashic-vgamepad": "^0.1.3"
   }
 }
